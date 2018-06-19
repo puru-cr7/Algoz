@@ -7,9 +7,11 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-import sun.misc.FloatingDecimal;
-
-// For reading inputs from standard inputstream
+/**
+ * This class can be used for fast reading of inputs from Std input stream
+ *
+ * @author Purnendu Rath (puru_cr7)
+ */
 public final class IScanner {
 	private final InputStream is = System.in;
 	private final byte[] buf = new byte[8192];
@@ -98,7 +100,7 @@ public final class IScanner {
 	}
 
 	public double nextDouble() {
-		return FloatingDecimal.parseDouble(nextString());
+		return Double.parseDouble(nextString());
 	}
 
 	public BigInteger nextBigInteger() {
