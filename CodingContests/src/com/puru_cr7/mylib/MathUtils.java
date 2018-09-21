@@ -21,7 +21,7 @@ public class MathUtils {
 		return true;
 	}
 
-	// pascals traiangle wrt to mod
+	// pascals triangle wrt to mod
 	public static long[][] generatePascalsTriangle(final int n, final int mod) {
 		final long[][] ps = new long[n + 1][];
 		for (int i = 1; i <= n; i++) {
