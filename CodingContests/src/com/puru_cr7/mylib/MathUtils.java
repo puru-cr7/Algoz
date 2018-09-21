@@ -21,6 +21,10 @@ public class MathUtils {
 		return true;
 	}
 
+	public static int gcd(final int a, final int b) {
+		return b == 0 ? a : gcd(b, a % b);
+	}
+
 	// pascals triangle wrt to mod
 	public static long[][] generatePascalsTriangle(final int n, final int mod) {
 		final long[][] ps = new long[n + 1][];
@@ -34,4 +38,23 @@ public class MathUtils {
 		}
 		return ps;
 	}
+
+	/**
+	 * computing a^x mod p using fermat's little theorem
+	 * fermats little theorem : a^(p-1)=1 mod p
+	 * So a^x=a^(x (mod p-1)) mod p
+	 */
+	public static int power(final int a, final int x, final int p) {
+		return (int) Math.pow(a, x % (p - 1)) % p;
+	}
+
+	/**
+	 * Computes a^(-1) mod p
+	 * According to FL theorem, a^(p-1)= 1 mod p
+	 * So, a^-1 mod p= a^m-2 mod p
+	 */
+	public static int modInv(final int a, final int p) {
+		return power(a, p - 2, p);
+	}
+
 }
