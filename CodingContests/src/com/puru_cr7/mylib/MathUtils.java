@@ -40,7 +40,7 @@ public class MathUtils {
 	}
 
 	/**
-	 * computing a^x mod p using fermat's little theorem
+	 * Computes a^x mod p using fermat's little theorem
 	 * fermats little theorem : a^(p-1)=1 mod p
 	 * So a^x=a^(x (mod p-1)) mod p
 	 */
@@ -84,4 +84,5 @@ public class MathUtils {
 		return tot;
 	}
 
+	// TDOD:Sieve
 }
