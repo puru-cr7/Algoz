@@ -12,8 +12,8 @@ public class MathUtils {
 		return (n & 1) != 0;
 	}
 
-	public static boolean isPrime(final long no) {
-		for (long i = 2; i * i <= no; i++) {
+	public static boolean isPrime(final int no) {
+		for (int i = 2; i * i <= no; i++) {
 			if (no % i == 0) {
 				return false;
 			}
@@ -55,6 +55,33 @@ public class MathUtils {
 	 */
 	public static int modInv(final int a, final int p) {
 		return power(a, p - 2, p);
+	}
+
+	/**
+	 * Euler’s Totient function ?(n) for an input n is count of numbers
+	 * in {1, 2, 3, …, n} that are relatively prime to n,
+	 * i.e., the numbers whose GCD (Greatest Common Divisor) with n is 1.
+	 * The Eulers formulas states that The formula basically says that the value of ?(n)
+	 * is equal to n multiplied by product of (1 – 1/p) for all prime factors p of n.
+	 * For example value of ?(6) = 6 * (1-1/2) * (1 – 1/3) = 2.
+	 */
+	public static long getEulerTotient(int n) {
+		int tot = n;
+		for (int p = 2; p * p <= n; p++) {
+			// x*(1-1/p)=[x*(p-1)/p]=(x/p)*(p-1)
+			if (n % p == 0) {
+				tot /= p;
+				tot *= p - 1;
+				while (n % p == 0) {
+					n /= p;
+				}
+			}
+		}
+		if (n > 1) {
+			tot /= n;
+			tot *= n - 1;
+		}
+		return tot;
 	}
 
 }
