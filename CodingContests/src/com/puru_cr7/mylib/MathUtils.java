@@ -51,7 +51,7 @@ public class MathUtils {
 	/**
 	 * Computes a^(-1) mod p
 	 * According to FL theorem, a^(p-1)= 1 mod p
-	 * So, a^-1 mod p= a^m-2 mod p
+	 * So, a^-1 mod p= a^p-2 mod p
 	 */
 	public static int modInv(final int a, final int p) {
 		return power(a, p - 2, p);
