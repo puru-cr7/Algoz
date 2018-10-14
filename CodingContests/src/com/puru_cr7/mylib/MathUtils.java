@@ -1,5 +1,8 @@
 package com.puru_cr7.mylib;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class is a library for all math related methods with best possible complexities.
  *
@@ -84,5 +87,36 @@ public class MathUtils {
 		return tot;
 	}
 
-	// TDOD:Sieve
+	/**
+	 * FInd all primes numbers b/w 1 and n
+	 *
+	 * @param n
+	 * @return List of prime numbers till n
+	 */
+	public static List<Integer> sieveOfEratosthenes(final int n) {
+		final List<Integer> primes = new ArrayList<>();
+		final boolean prime[] = new boolean[n + 1];
+		for (int i = 0; i < n; i++) {
+			prime[i] = true;
+		}
+
+		for (int p = 2; p * p <= n; p++) {
+			if (prime[p] == true) {
+				for (int i = p * 2; i <= n; i += p) {
+					prime[i] = false;
+				}
+			}
+		}
+
+		for (int i = 2; i <= n; i++) {
+			if (prime[i] == true) {
+				primes.add(i);
+			}
+		}
+
+		return primes;
+	}
+
+	// TODO:ncrmodn
+
 }
