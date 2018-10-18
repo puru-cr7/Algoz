@@ -47,7 +47,7 @@ public class MathUtils {
 	 * fermats little theorem : a^(p-1)=1 mod p
 	 * So a^x=a^(x (mod p-1)) mod p
 	 */
-	public static int power(final int a, final int x, final int p) {
+	public static int power(final long a, final long x, final int p) {
 		return (int) Math.pow(a, x % (p - 1)) % p;
 	}
 
@@ -56,7 +56,7 @@ public class MathUtils {
 	 * According to FL theorem, a^(p-1)= 1 mod p
 	 * So, a^-1 mod p= a^p-2 mod p
 	 */
-	public static int modInv(final int a, final int p) {
+	public static int modInv(final long a, final int p) {
 		return power(a, p - 2, p);
 	}
 
@@ -117,6 +117,44 @@ public class MathUtils {
 		return primes;
 	}
 
-	// TODO:ncrmodn
+	/**
+	 * This method uses Lucas theorem to find nCr mod m
+	 * It dividies nCr as niCri where i are are digits base m
+	 *
+	 * @param n
+	 * @param r
+	 * @param m
+	 * @return nCr mod m
+	 */
+	public static long nCrmodm(long n, long r, final int m) {
+		long ans;
+		int a, b;
+		ans = 1;
+		while (n > 0) {
+			a = (int) (n % m);
+			b = (int) (r % m);
+			if (b > a) {
+				ans = 0;
+				break;
+			}
+
+			// calculating niCri
+			long temp = 1;
+			for (int j = 0; j < b; j++) {
+				temp = temp * a % m;
+				a--;
+			}
+			long temp2 = 1;
+			for (int j = 1; j <= b; j++) {
+				temp2 = modInv(temp2 * j, m);
+				temp2 %= m;
+			}
+			ans = ans * temp % m;
+			ans = ans * temp2 % m;
+			n = n / m;
+			r = r / m;
+		}
+		return ans;
+	}
 
 }
