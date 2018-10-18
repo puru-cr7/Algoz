@@ -14,7 +14,7 @@ public class DataStructures {
 	 * This is to be used when no. of updtae and query operations in the array are almost equal
 	 * computes at O(log n)
 	 *
-	 * @author puru_c7
+	 * @author puru_cr7
 	 *         Created Oct 18, 2018.
 	 */
 	@SuppressWarnings("unused")
