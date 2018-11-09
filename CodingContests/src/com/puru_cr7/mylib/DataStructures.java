@@ -11,7 +11,7 @@ public class DataStructures {
 
 	/**
 	 * Segment Tree DataStructure for answering multiple range minimum queries efficiently
-	 * This is to be used when no. of updtae and query operations in the array are almost equal
+	 * This is to be used when no. of update and query operations in the array are almost equal
 	 * computes at O(log n)
 	 *
 	 * @author puru_cr7
