@@ -1,5 +1,7 @@
 package com.puru_cr7.mylib;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,11 @@ import java.util.List;
  *         Created Jun 19, 2018.
  */
 public class MathUtils {
+
+	// by default rounds to higher number
+	public static NumberFormat getFormatter() {
+		return new DecimalFormat("#0.00");
+	}
 
 	public static boolean isOdd(final int n) {
 		return (n & 1) != 0;
