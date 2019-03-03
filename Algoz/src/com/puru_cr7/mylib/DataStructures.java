@@ -76,7 +76,7 @@ public class DataStructures {
 	}
 
 	/**
-	 * The following classes and methods are used to berform BFS to find shortest paths by avoiding obstacles in a grid.
+	 * The following classes and methods are used to perform BFS to find shortest path by avoiding obstacles in a grid.
 	 * All 0's in the grid are obstacles
 	 *
 	 * @author Purnendu Rath (puru_cr7).
@@ -149,6 +149,40 @@ public class DataStructures {
 
 	static boolean isValid(final int row, final int col, final int ROW, final int COL) {
 		return row >= 0 && row < ROW && col >= 0 && col < COL;
+	}
+
+	/**
+	 * Computes the min cost matrix using DP for a grid from (0,0) to (m,n)
+	 * possible movement are donward, sideways nad diagonal
+	 *
+	 * @param cost
+	 * @param m
+	 * @param n
+	 * @return min cost to reach (m,n)
+	 */
+	private static int minCostDP(final int cost[][], final int m, final int n) {
+		int i, j;
+		final int tc[][] = new int[m + 1][n + 1];
+
+		tc[0][0] = cost[0][0];
+
+		for (i = 1; i <= m; i++) {
+			tc[i][0] = tc[i - 1][0] + cost[i][0];
+		}
+
+		for (j = 1; j <= n; j++) {
+			tc[0][j] = tc[0][j - 1] + cost[0][j];
+		}
+
+		for (i = 1; i <= m; i++) {
+			for (j = 1; j <= n; j++) {
+				tc[i][j] = Math.min(tc[i - 1][j - 1], Math.min(
+						tc[i - 1][j],
+						tc[i][j - 1])) + cost[i][j];
+			}
+		}
+
+		return tc[m][n];
 	}
 
 }
