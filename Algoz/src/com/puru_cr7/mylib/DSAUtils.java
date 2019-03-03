@@ -1,6 +1,8 @@
 package com.puru_cr7.mylib;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Queue;
  *         Created Oct 18, 2018.
  */
 
-public class DataStructures {
+public class DSAUtils {
 
 	/**
 	 * Segment Tree DataStructure for answering multiple range minimum queries efficiently
@@ -183,6 +185,49 @@ public class DataStructures {
 		}
 
 		return tc[m][n];
+	}
+
+	// find all combinations of given size of an array
+	static void findCombinations(final int arr[], final int n, final int r, final List<List<Integer>> list) {
+		final int data[] = new int[r];
+		combinationUtil(arr, data, 0, n - 1, 0, r, list);
+	}
+
+	private static void combinationUtil(final int arr[], final int data[], final int start,
+			final int end, final int index, final int r, final List<List<Integer>> list) {
+
+		final List<Integer> l = new ArrayList<>();
+		if (index == r) {
+			for (int j = 0; j < r; j++) {
+				l.add(data[j]);
+			}
+			list.add(l);
+			return;
+		}
+
+		for (int i = start; i <= end && end - i + 1 >= r - index; i++) {
+			data[index] = arr[i];
+			combinationUtil(arr, data, i + 1, end, index + 1, r, list);
+		}
+	}
+
+	// permute a given array and return List of permutations
+	public static ArrayList<ArrayList<Integer>> permute(final Object[] num) {
+		ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+		result.add(new ArrayList<Integer>());
+		for (int i = 0; i < num.length; i++) {
+			final ArrayList<ArrayList<Integer>> current = new ArrayList<>();
+			for (final ArrayList<Integer> l : result) {
+				for (int j = 0; j < l.size() + 1; j++) {
+					l.add(j, (Integer) num[i]);
+					final ArrayList<Integer> temp = new ArrayList<>(l);
+					current.add(temp);
+					l.remove(j);
+				}
+			}
+			result = new ArrayList<>(current);
+		}
+		return result;
 	}
 
 }
